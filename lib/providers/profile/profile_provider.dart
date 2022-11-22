@@ -4,7 +4,7 @@ import 'package:fb_auth_provider/providers/profile/profile_state.dart';
 import 'package:fb_auth_provider/repositories/profile_repository.dart';
 import 'package:state_notifier/state_notifier.dart';
 
-class ProfileProvider extends StateNotifier with LocatorMixin {
+class ProfileProvider extends StateNotifier<ProfileState> with LocatorMixin {
   ProfileProvider() : super(ProfileState.initial());
 
   Future<void> getProfile({required String uid}) async {

@@ -54,10 +54,8 @@ class MyApp extends StatelessWidget {
         StateNotifierProvider<SignupProvider, SignupState>(
           create: (context) => SignupProvider(),
         ),
-        ChangeNotifierProvider<ProfileProvider>(
-          create: (context) => ProfileProvider(
-            profileRepository: context.read<ProfileRepository>(),
-          ),
+        StateNotifierProvider<ProfileProvider, ProfileState>(
+          create: (context) => ProfileProvider(),
         )
       ],
       child: MaterialApp(
