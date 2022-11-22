@@ -9,6 +9,15 @@ class User extends Equatable {
   final int point;
   final String rank;
 
+  User({
+    required this.id,
+    required this.name,
+    required this.email,
+    required this.profileImage,
+    required this.point,
+    required this.rank,
+  });
+
   factory User.fromDoc(DocumentSnapshot userDoc) {
     final userData = userDoc.data() as Map<String, dynamic>?;
 
@@ -35,7 +44,7 @@ class User extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props {
+  List<Object> get props {
     return [
       id,
       name,
@@ -45,15 +54,6 @@ class User extends Equatable {
       rank,
     ];
   }
-
-  User({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.profileImage,
-    required this.point,
-    required this.rank,
-  });
 
   @override
   String toString() {

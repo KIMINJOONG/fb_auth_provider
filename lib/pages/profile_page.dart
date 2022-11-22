@@ -8,21 +8,18 @@ import 'package:firebase_auth/firebase_auth.dart' as fbAuth;
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
-  static const String routeName = '/profile';
-
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  late final ProfileProvider profileProvider;
+  late final ProfileProvider profileProv;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    profileProvider = context.read<ProfileProvider>();
-    profileProvider.addListener(errorDialogListener);
+    profileProv = context.read<ProfileProvider>();
+    profileProv.addListener(errorDialogListener);
     _getProfile();
   }
 
@@ -34,15 +31,14 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   void errorDialogListener() {
-    if (profileProvider.state.profileStatus == ProfileStatus.error) {
-      errorDialog(context, profileProvider.state.error);
+    if (profileProv.state.profileStatus == ProfileStatus.error) {
+      errorDialog(context, profileProv.state.error);
     }
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
-    profileProvider.removeListener(errorDialogListener);
+    profileProv.removeListener(errorDialogListener);
     super.dispose();
   }
 
@@ -67,11 +63,9 @@ class _ProfilePageState extends State<ProfilePage> {
               height: 75,
               fit: BoxFit.cover,
             ),
-            SizedBox(
-              width: 20.0,
-            ),
+            SizedBox(width: 20.0),
             Text(
-              'Ooops!\nTry again!',
+              'Ooops!\nTry again',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20.0,
@@ -86,7 +80,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Card(
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           FadeInImage.assetNetwork(
             placeholder: 'assets/images/loading.gif',
@@ -94,58 +88,35 @@ class _ProfilePageState extends State<ProfilePage> {
             width: double.infinity,
             fit: BoxFit.cover,
           ),
-          SizedBox(
-            width: 10.0,
-          ),
+          SizedBox(height: 10.0),
           Padding(
             padding: const EdgeInsets.only(left: 10.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   '- id: ${profileState.user.id}',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                  ),
+                  style: TextStyle(fontSize: 18.0),
                 ),
-                SizedBox(
-                  height: 10.0,
-                ),
+                SizedBox(height: 10.0),
                 Text(
                   '- name: ${profileState.user.name}',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                  ),
+                  style: TextStyle(fontSize: 18.0),
                 ),
-                SizedBox(
-                  height: 10.0,
-                ),
+                SizedBox(height: 10.0),
                 Text(
                   '- email: ${profileState.user.email}',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                  ),
+                  style: TextStyle(fontSize: 18.0),
                 ),
-                SizedBox(
-                  height: 10.0,
-                ),
+                SizedBox(height: 10.0),
                 Text(
                   '- point: ${profileState.user.point}',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                  ),
+                  style: TextStyle(fontSize: 18.0),
                 ),
-                SizedBox(
-                  height: 10.0,
-                ),
+                SizedBox(height: 10.0),
                 Text(
                   '- rank: ${profileState.user.rank}',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                  ),
-                ),
-                SizedBox(
-                  height: 10.0,
+                  style: TextStyle(fontSize: 18.0),
                 ),
               ],
             ),

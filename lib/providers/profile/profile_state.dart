@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:fb_auth_provider/models/custom_error.dart';
 import 'package:fb_auth_provider/models/user_model.dart';
 
@@ -8,11 +9,10 @@ enum ProfileStatus {
   error,
 }
 
-class ProfileState {
+class ProfileState extends Equatable {
   final ProfileStatus profileStatus;
   final User user;
   final CustomError error;
-
   ProfileState({
     required this.profileStatus,
     required this.user,
@@ -27,8 +27,10 @@ class ProfileState {
     );
   }
 
+  @override
   List<Object> get props => [profileStatus, user, error];
 
+  @override
   bool get stringify => true;
 
   ProfileState copyWith({

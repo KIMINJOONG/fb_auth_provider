@@ -13,6 +13,7 @@ class ProfileRepository {
   Future<User> getProfile({required String uid}) async {
     try {
       final DocumentSnapshot userDoc = await usersRef.doc(uid).get();
+      print(userDoc.exists);
 
       if(userDoc.exists) {
         final User currentUser = User.fromDoc(userDoc);
