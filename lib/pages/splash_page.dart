@@ -12,7 +12,7 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authState = context.watch<AuthProvider>().state;
+    final authState = context.watch<AuthState>();
     if (authState.authStatus == AuthStatus.authenticated) {
       WidgetsBinding.instance!.addPostFrameCallback(
         (_) {
